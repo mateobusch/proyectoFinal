@@ -11,19 +11,22 @@ export default function Login({ navigation }) {
     setError("");
 
     if (!email.includes("@")){
-      setError("Email inexistente");
+      setError("Email mal formateado");
       return;
     }
-    if (password.length < 6){
-      setError("La contraseña debe tener una longitud mínima de 6 caracteres");
+    if (email === '' || password === ''){
+      setError("Todos los campos son obligatorios");
       return;
     }
     auth.signInWithEmailAndPassword(email, password)
         .then((response) => {
-            navigation.navigate("HomeMenu");
+
+          setEmail('')
+          setPassword('')
+            navigation.navigate("NavegacionTab");
         })
-        .catch((error) => {
-            setError("Credenciales incorrectas");
+        .catch((err) => {
+            setErr(err.message);
         });
   };
 
@@ -47,16 +50,16 @@ export default function Login({ navigation }) {
         onChangeText={(text) => setPassword(text)}
       />
 
+      {error !== "" && (
+        <Text style={styles.errorText}>{error}</Text>
+      )}
+
       <Pressable style={styles.button} onPress={onSubmit}>
         <Text style={styles.buttonText}>Login</Text>
       </Pressable>
 
       <Pressable onPress={() => navigation.navigate('Register')}>
         <Text style={styles.link}>Ir al registro</Text>
-      </Pressable>
-
-      <Pressable onPress={() => navigation.navigate('HomeMenu')}>
-        <Text style={styles.link}>Entrar en la app</Text>
       </Pressable>
 
       
@@ -66,44 +69,54 @@ export default function Login({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
-    marginTop: 20,
+    flex: 1,                          
+    flexDirection: 'column',          
+    justifyContent: 'center',         
+    paddingLeft: 15,                 
+    paddingRight: 15,
+    backgroundColor: '#f5f5f5',
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
     height: 50,
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    borderWidth: 1,
+    paddingTop: 10,                   
+    paddingBottom: 10,
+    paddingLeft: 12,
+    paddingRight: 12,
+    borderWidth: 1,                   
     borderColor: '#ccc',
-    borderStyle: 'solid',
     borderRadius: 6,
     marginVertical: 10,
   },
   button: {
     backgroundColor: '#28a745',
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    alignItems: 'center',
+    height: 48,                       
+    justifyContent: 'center',         
+    alignItems: 'center',             
     borderRadius: 4,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#28a745',
-    marginTop: 10,
+    marginTop: 15,
   },
   buttonText: {
     color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   link: {
-    marginTop: 20,
+    marginTop: 25,
     color: '#007AFF',
     textAlign: 'center',
   },
-  preview: {
-    marginTop: 30,
-  },
-});
+  errorText: {
+    color: '#dc3545',
+    fontSize: 14,
+    marginTop: 5,
+    marginBottom: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+  }
+})
