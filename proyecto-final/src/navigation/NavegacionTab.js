@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-import Home from '../src/screens/Home/Home'
-import MiPerfil from '../src/screens/MiPerfil/MiPerfil'
-import Post from '../src/components/Post/Post'
+import Home from '../screens/Home/Home'
+import MiPerfil from '../screens/MiPerfil/MiPerfil'
+import Post from '../components/Post/Post'
 
 const Tab = createBottomTabNavigator()
 export default function NavegacionTab(){
