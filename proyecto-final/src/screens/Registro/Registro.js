@@ -7,7 +7,17 @@ export default function Register({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const onSubmit = () => {
+
+    setErrorMessage('')
+
+    if (email === '' || username === '' || password ===''){
+      setErrorMessage('');
+      return;
+    }
+
     auth.createUserWithEmailAndPassword(email, password)
     .then((response) => {
       db.collection("users").add({
@@ -17,12 +27,17 @@ export default function Register({ navigation }) {
       createdAt: Date.now()
   })
   .then(()=>{
+    setEmail('')
+    setUsername('')
+    setPassword('')
     navigation.navigate("Login");
   })
-      
+    .catch( (err) =>{
+      setErrorMessage("Error en el registro")
+    } )  
     })
     .catch((error) => {
-      setError("Error en el registro")
+      setErrorMessage(error.message)
     });
   };
 
@@ -55,7 +70,9 @@ export default function Register({ navigation }) {
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-
+      {errorMessage !== '' && (
+        <Text style={styles.errorText}>{errorMessage}</Text>
+      )}
       <Pressable style={styles.button} onPress={onSubmit}>
         <Text style={styles.buttonText}>Registrate</Text>
       </Pressable>
@@ -71,13 +88,18 @@ export default function Register({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
-    marginTop: 20,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: "center",
+    paddingLeft: 15,    
+    paddingRight: 15,
+    backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 15,
+    textAlign: 'center'
   },
   input: {
     height: 50,
@@ -111,4 +133,12 @@ const styles = StyleSheet.create({
   preview: {
     marginTop: 30,
   },
+  errorText: {
+    color: '#dc3545',
+    fontSize: 14,
+    marginTop: 5,
+    marginBottom: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+  }
 });
