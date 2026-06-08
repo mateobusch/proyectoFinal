@@ -10,9 +10,7 @@ import Post from '../src/components/Post/Post'
 const Tab = createBottomTabNavigator()
 export default function NavegacionTab(){
     return (
-            <Tab.Navigator screenOptions={{
-                headerShown: false, 
-                tabBarShowLabel: false} }>
+            <Tab.Navigator screenOptions={ {headerShown: false , tabBarShowLabel: false} }>
                 <Tab.Screen name="Home" component={Home} options={{
                     tabBarIcon: () => <FontAwesome name="home" size={24} color="black"/>}}/>
                 <Tab.Screen name="Profile" component={MiPerfil} options={{
