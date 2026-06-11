@@ -1,0 +1,7 @@
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+export default function Comentarios() {
+  return (
+  );
+}
