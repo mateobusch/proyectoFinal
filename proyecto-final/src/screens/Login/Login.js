@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
-import {auth} from "../../firebase/config"
+import {auth} from "../firebase/config"
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
