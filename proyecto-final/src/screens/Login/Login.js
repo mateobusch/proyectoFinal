@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
-import {auth} from "../firebase/config"
+import { auth } from '../../firebase/config';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user !== null){
+        navigation.navigate('NavegacionTab')
+      }
+    })
+  }, [])
   const onSubmit = () => {
     setError("");
 
