@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { db } from '../../firebase/config';
 
 export default function Post() {
@@ -33,6 +33,12 @@ export default function Post() {
           <View style={styles.card}>
             <Text>Email: {item.data.email}</Text>
             <Text>Post: {item.data.descripcionPost}</Text>
+            <Pressable
+            onPress={() =>
+              props.navigation.navigate('StackSecundaria', {
+              posteoId: item.id, screen: 'Comentarios'
+            })}>
+            </Pressable>
           </View>
         )}
       />
