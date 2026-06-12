@@ -33,11 +33,11 @@ export default function Post() {
           <View style={styles.card}>
             <Text>Email: {item.data.email}</Text>
             <Text>Post: {item.data.descripcionPost}</Text>
-            <Pressable
-            onPress={() =>
+            <Pressable onPress={() =>
               props.navigation.navigate('StackSecundaria', {
               posteoId: item.id, screen: 'Comentarios'
             })}>
+              <Text>Comentar</Text>
             </Pressable>
           </View>
         )}
