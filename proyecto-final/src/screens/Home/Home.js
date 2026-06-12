@@ -8,11 +8,13 @@ export default function Home({navigation}) {
 const[listaPosteos, setListaPosteos] = useState([])
 
 useEffect(()=>{
+
   db.collection('posts')
-  .orderBy('createdAt', 'desc')
-  .onSnapshot((onSnapshot) => {
-    let postsAux = []
-    snapshot.forEach((doc) => {
+    .orderBy('createdAt', 'desc')
+    .onSnapshot((onSnapshot) => {
+      let postsAux = []
+
+      snapshot.forEach((doc) => {
           postsAux.push({
             id: doc.id,         
             data: doc.data()   
@@ -27,9 +29,20 @@ useEffect(()=>{
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Pantalla Home</Text>
-      <Text>Bienvenido a la aplicación</Text>
+      <Text style={styles.subtitle}>Bienvenido a la aplicación</Text>
 
-      <Post/>
+      <FlatList
+      data={listaPosteos}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({item}) => (
+        <Post
+        id={item.id}
+        data={item.id}
+        navigation = {navigation}
+        />
+      )}
+      style = {styles.flatlist}
+      />
       
     </View>
   );
@@ -38,11 +51,24 @@ useEffect(()=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
-    marginTop: 20,
+    flexDirection: 'column',
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: '#ffffff',
   },
   title: {
     fontSize: 26,
     fontWeight: 'bold',
+    marginTop: 20,
+    color: '#333',
   },
-});
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 15,
+  },
+  flatlist: {
+    flex: 1,
+    width: '100%',
+  },
+});;
