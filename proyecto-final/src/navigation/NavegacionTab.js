@@ -9,15 +9,16 @@ import CrearPost from '../screens/CrearPost/CrearPost'
 import StackSecundaria from "./StackSecundaria"; 
 
 const Tab = createBottomTabNavigator()
+
 export default function NavegacionTab(){
     return (
             <Tab.Navigator screenOptions={ {headerShown: false , tabBarShowLabel: false} }>
 
-                <Tab.Screen name="Home" component={Home} options={{
+                <Tab.Screen name="HomeTab" component={StackSecundaria} options={{
                     tabBarIcon: () => <FontAwesome name="home" size={24} color="black"/>}}/>
-                <Tab.Screen name="Profile" component={MiPerfil} options={{
+                <Tab.Screen name="CrearPost" component={CrearPost} options={{
                     tabBarIcon: () => <FontAwesome name="account-book" size={24} color="black"/>}}/>
-                <Tab.Screen name="StackSecundaria" component={StackSecundaria} options={{
+                <Tab.Screen name="Profile" component={MiPerfil} options={{
                     tabBarIcon: () => <FontAwesome name="account-book" size={24} color="black"/>}}/>
             </Tab.Navigator>
     )

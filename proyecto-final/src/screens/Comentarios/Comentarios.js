@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, Pressable } from 'react-native';
-import { db, auth } from '../../firebase/config';
+import { db, auth } from '../firebase/config';
+import firebase from 'firebase';
 
 export default function Comentarios(props) {
 
-  const posteoId = props.route.params.posteoId;
+  const posteoId = props.route.params.id;
+
   const [ comentarioCrear , setComentarioCrear ] = useState('')
   const [ comentariosTodos , setComentariosTodos ] = useState([])
   const [error, setError] = useState('');
