@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
-import { db } from '../../firebase/config';
+import { auth, db } from '../../firebase/config';
 
 export default function Post(props) {
+  const likePost = () => {
+    const uid = auth.currentUser.uid;
+
+    let likes = props.data.likes || [];
+
+    if (likes.includes(uid)){
+      likes = likes.filter(id => id !== uid)
+      
+    }
+    else{
+      likes.push(uid)
+    }
+
+    db.collection("posts")
+    .doc(props.id)
+    .update({
+      likes: likes
+    })
+    
+  }
 
   return (
    
@@ -17,6 +37,10 @@ export default function Post(props) {
             })}>
               <Text>Comentar</Text>
             </Pressable>
+             <Text>{(props.data.likes || []).length} Likes </Text>
+             <Pressable onPress= {likePost}>
+              <Text>Me gusta</Text>
+             </Pressable>
           </View>
       
     

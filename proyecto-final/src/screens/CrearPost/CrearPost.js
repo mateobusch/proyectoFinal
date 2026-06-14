@@ -16,6 +16,7 @@ export default function NuevoPost({ navigation }) {
       email: auth.currentUser.email,
       descripcionPost: descripcionPost,
       owner: auth.currentUser.uid,
+      likes: [],
       createdAt: Date.now()
     })
     .then(() => {
