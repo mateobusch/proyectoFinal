@@ -39,13 +39,13 @@ export default function Post(props) {
             <Text style={styles.ownerText}>Email: {props.data.email}</Text>
             <Text style={styles.descriptionText}>Post: {props.data.descripcionPost}</Text>
 
-            <Text style={likesCount}>{(props.data.likes || []).length} Likes </Text>
+            <Text style={styles.likesCount}>{(props.data.likes || []).length} Likes </Text>
 
             <View style={styles.buttonContainer}>
 
             <Pressable style= {styles.buttonComment} onPress={() =>
-              props.navigation.navigate('Comentarios', {id: props.id})}>
-              <Text style={buttonText}>Comentar</Text>
+              props.navigation.navigate('Comentarios', {posteoId: props.id})}>
+              <Text style={styles.buttonText}>Comentar</Text>
             </Pressable>
              
              <Pressable onPress= {likePost}>
