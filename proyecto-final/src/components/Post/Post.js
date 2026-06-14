@@ -2,47 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native';
 import { db } from '../../firebase/config';
 
-export default function Post() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    db.collection('posts')
-      .onSnapshot((docs) => {
-        let postsArray = [];
-
-        docs.forEach((doc) => {
-          postsArray.push({
-            id: doc.id,
-            data: doc.data()
-          });
-        });
-
-        setPosts(postsArray);
-        console.log(postsArray);
-      });
-  }, []);
+export default function Post(props) {
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Publicaciones</Text>
+   
 
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
+    
           <View style={styles.card}>
-            <Text>Email: {item.data.email}</Text>
-            <Text>Post: {item.data.descripcionPost}</Text>
+            <Text>Email: {props.data.email}</Text>
+            <Text>Post: {props.data.descripcionPost}</Text>
             <Pressable onPress={() =>
               props.navigation.navigate('StackSecundaria', {
-              posteoId: item.id, screen: 'Comentarios'
+              posteoId: props.id, screen: 'Comentarios'
             })}>
               <Text>Comentar</Text>
             </Pressable>
           </View>
-        )}
-      />
-    </View>
+      
+    
   );
 }
 

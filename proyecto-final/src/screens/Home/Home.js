@@ -14,7 +14,7 @@ useEffect(()=>{
     .onSnapshot((onSnapshot) => {
       let postsAux = []
 
-      snapshot.forEach((doc) => {
+      onSnapshot.forEach((doc) => {
           postsAux.push({
             id: doc.id,         
             data: doc.data()   
@@ -37,7 +37,7 @@ useEffect(()=>{
       renderItem={({item}) => (
         <Post
         id={item.id}
-        data={item.id}
+        data={item.data}
         navigation = {navigation}
         />
       )}
