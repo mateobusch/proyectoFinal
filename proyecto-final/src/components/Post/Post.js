@@ -48,8 +48,8 @@ export default function Post(props) {
               <Text style={styles.buttonText}>Comentar</Text>
             </Pressable>
              
-             <Pressable onPress= {likePost}>
-              <Text>Me gusta</Text>
+             <Pressable style= {styles.buttonLike} onPress= {likePost}>
+              <Text style={styles.buttonText}>Me gusta</Text>
              </Pressable>
 
              </View>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   buttonLike: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#ff0447',
     height: 38,
     width: '48%',
     justifyContent: 'center',

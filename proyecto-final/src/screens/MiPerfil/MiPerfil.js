@@ -11,7 +11,7 @@ export default function Profile({ navigation }) {
     if (!auth.currentUser) return
 
     db.collection('posts')
-      .where('owner', '==', auth.currentUser.email)
+      .where('owner', '==', auth.currentUser.uid)
       .onSnapshot((snapshot) => {
         let postsAux = []
         snapshot.forEach((doc)=> {
