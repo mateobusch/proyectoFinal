@@ -41,9 +41,8 @@ const handleLogout = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerPerfil}>
-
         <Text style={styles.title}>Mi Perfil</Text>
-        <Text style={infoText}>
+        <Text style={styles.infoText}>
           <Text style={styles.boldText}>Email: </Text>{auth.currentUser?.email}
         </Text>
         <Text style={styles.infoText}>
