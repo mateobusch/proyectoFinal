@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CrearPost from '../screens/CrearPost/CrearPost'
-import Comentarios from '../components/Comentarios/Comentarios'
+import Home from '../screens/Home/Home';
+import Comentarios from '../screens/Comentarios/Comentarios'
 
 const Stack = createNativeStackNavigator();
 
@@ -10,8 +9,8 @@ export default function StackSecundaria() {
 
   return (
       <Stack.Navigator>
-        <Stack.Screen name='NuevoPost' component={CrearPost} options={ {headerShown: false} }/>
-        <Stack.Screen name='Comentarios' component={Comentarios} options={ {headerShown: false} }/>
+        <Stack.Screen name='HomeReal' component={Home} options={ {headerShown: false} }/>
+        <Stack.Screen name='Comentarios' component={Comentarios} options={ {headerShown: false, title: 'Comentarios'} }/>
       </Stack.Navigator>
   );
 }
