@@ -28,8 +28,8 @@ useEffect(()=>{
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pantalla Home</Text>
-      <Text style={styles.subtitle}>Bienvenido a la aplicación</Text>
+      <Text style={styles.title}>Home</Text>
+      <Text style={styles.subtitle}>Bienvenido a Quick Snap</Text>
 
       <FlatList
       data={listaPosteos}
@@ -52,20 +52,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: '#ffffff',
+    paddingLeft: 14,
+    paddingRight: 14,
+    backgroundColor: '#f3f4f6',
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginTop: 20,
-    color: '#333',
+    marginTop: 24,
+    color: '#111827',
   },
   subtitle: {
     fontSize: 14,
     color: '#666',
-    marginBottom: 15,
+    marginTop: 4,
+    marginBottom: 18,
   },
   flatlist: {
     flex: 1,
