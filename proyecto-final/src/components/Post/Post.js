@@ -37,6 +37,7 @@ export default function Post(props) {
     
           <View style={styles.card}>
             <Text style={styles.ownerText}>Email: {props.data.email}</Text>
+            <Text style={styles.dateText}> Fecha: {new Date(props.data.createdAt).toLocaleDateString()}</Text>
             <Text style={styles.descriptionText}>Post: {props.data.descripcionPost}</Text>
 
             <Text style={styles.likesCount}>{(props.data.likes || []).length} Likes </Text>
@@ -101,6 +102,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
+  },
+  dateText: {
+  fontSize: 12,
+  color: '#6b7280',
+  marginBottom: 8,
   },
   buttonComment: {
     backgroundColor: '#28a745',
